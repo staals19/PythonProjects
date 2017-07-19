@@ -25,26 +25,39 @@ penup()
 pendown()
 
 size = 100
+sides = input("How many sides?")
+sides = int(sides)
+#colors = str(colors)
+color = input("What color?")
 
-fillcolor("blue")
 
-def draw_triangle():
+while color not in colors:
+    color = input("What color?")
+
+
+print(sides)
+
+fillcolor(color)
+
+def draw_shape():
     begin_fill()
-    for i in range(3):
-        right(120)
+    for i in range(sides):
+        right(360/sides)
         forward(size)
     end_fill()
 
-def foundation():
+draw_shape()
+
+'''def foundation():
     for i in range(10):
         color = random.choice(colors)
         fillcolor(color)
         draw_triangle()
         right(30)
 
-for i in range(10):
-    foundation()
-    size -= 10
+#for i in range(10):
+    #foundation()
+    #size -= 10'''
 
 
 
@@ -60,3 +73,4 @@ for i in range(10):
 
 # Close window on click.
 exitonclick()
+
