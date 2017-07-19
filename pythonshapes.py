@@ -13,6 +13,7 @@ x_pos = 0
 y_pos = 0
 t.setposition(x_pos, y_pos)
 
+
 #size = input('How big do you want your shape to be?')
 pendown()
 
@@ -24,15 +25,22 @@ penup()
 #forward(200)
 pendown()
 
-size = 100
+
 sides = input("How many sides?")
 sides = int(sides)
 #colors = str(colors)
 color = input("What color?")
 
 
+
 while color not in colors:
     color = input("What color?")
+
+number = input("How many shapes?")
+number = int(number)
+
+size = input("What size?")
+size = int(size)
 
 
 print(sides)
@@ -46,7 +54,11 @@ def draw_shape():
         forward(size)
     end_fill()
 
-draw_shape()
+for i in range(number):
+    draw_shape()
+    penup()
+    forward(size + size)
+    pendown()
 
 '''def foundation():
     for i in range(10):
@@ -73,4 +85,3 @@ draw_shape()
 
 # Close window on click.
 exitonclick()
-
