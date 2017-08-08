@@ -1,28 +1,15 @@
-mylist = [1,3,5,34,6,2,8]
+mylist = [70,8,1,3,4,10,80]
 
-def sort(list):
+errors = 0
 
-    errors = int(len(list))
-    while True:
-        for i in list:
-            while [i] <= int(len(list)):
-                    if list[i+1] < list[i]:
-                        bigger_number = list[i]
-                        list[i] = list[i+1]
-                        list[i+1] = bigger_number
-                        errors -= 1
-            if i > int(len(list)):
-                i = 0
-                errors = int(len(list))
-        if errors == 0:
-            break
+while errors > -1:
+    for i in range(0,len(mylist)-1):
+        if mylist[i+1] < mylist[i]:
+            bigger_number = mylist[i]
+            mylist[i] = mylist[i+1]
+            mylist[i+1] = bigger_number
+            errors +=1
+        else:
+            errors -= 1
 
-
-    return list
-    print(sort(mylist))
-
-
-'''print("Unsorted:")
 print(mylist)
-print("Sorted")
-print(sort(mylist))'''
