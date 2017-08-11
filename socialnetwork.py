@@ -10,15 +10,14 @@ def drawCircle(x, y):
     myTurtle.penup()
     myTurtle.goto(x_pos+x, y_pos+y)
     myTurtle.speed(0)
-    for i in range(0,360):
-        myTurtle.pendown()
-        myTurtle.forward(1)
-        myTurtle.right(1)
+    myTurtle.pendown()
+    myTurtle.circle(50,360,360)
 
 drawCircle(-100, 100)
-lena_pos = [-100, 100]
-drawCircle(100, 100)
+myTurtle.write("lena", font=("Arial", 16, "normal"))
 
+drawCircle(100, 100)
+myTurtle.write("leyla", font=("Arial", 16, "normal"))
 
 class User:
 
@@ -72,8 +71,9 @@ def main():
 
         if answer == "make profile":
             number_users += 1
-            drawCircle(0,0)
+            drawCircle(x,y)
             name = input("What is your name?")
+            myTurtle.write(name, font=("Arial", 16, "normal"))
             user_password = input("What do you want your password to be?")
             user = User(name,user_password,number_users)
             network.addUser(name,number_users,x,y)
@@ -81,24 +81,34 @@ def main():
             print(user.password)
             print(user.id)
             print(network.getCoordinates())
+            x += 100
+            y -= 100
 
         if answer == "add friend":
+            myTurtle.penup()
+            myTurtle.goto(0,0)
+            myTurtle.pendown()
             friend = input("Who?")
             userlist = network.getUsers()
             friendlist = user.getFriends()
             if friend in userlist.values():
                 if friend not in friendlist:
-                    user.addFriend(friend)
-                     #here we want to find the key of the "friend" name and use that to find the value of the corresponding key
-                     #in the coordinates list to find the "friend"'s coordinates and draw a line to it
+                    user.addFriend([friend,0])
+                    print(user.getFriends())
+                    for key, people in network.getUsers().items():
+                        if people == friend:
+                            friend_key = key
+                            print(key)
+                    friend_coordinates = network.getCoordinates()[friend_key]
+                    myTurtle.goto(friend_coordinates[0],friend_coordinates[1])
+                    myTurtle.penup()
                 else:
                     print("already friends")
             else:
                 print("not in network")
             print(user.friends)
-
-        x += 100
-        y -= 100
+        if answer =="like":
+            likedperson = input("Who?")
 
 
 
